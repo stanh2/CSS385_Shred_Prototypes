@@ -38,19 +38,19 @@ public class GlobalBehavior : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
     }
 
-    public void UpdateLandingText(string text)
+    public void UpdateLandingText(string newText)
     {
-        landingText.text = text;
+        landingText.text = newText;
     }
 
-    public void UpdateSpeedMulText(string text)
+    public void UpdateSpeedMulText(string newText)
     {
-        speedMulText.text = text;        
+        speedMulText.text = newText;        
     }
 
-    public void UpdateTrickText(string text)
+    public void UpdateTrickText(string newText)
     {
-        trickText.text = text;
+        trickText.text = newText;
     }
 
     public void UpdateScore(int points)
@@ -62,7 +62,7 @@ public class GlobalBehavior : MonoBehaviour
     {
         DestroyObject(mSnowboarder);
         crashSound.Play();
-        speedMulText.text = "Speed multiplier: ";
-        trickText.text = "Trick: ";
+        speedMulText.text = "Speed multiplier: reset";
+        trickText.text = "Trick: reset";
     }
 }
