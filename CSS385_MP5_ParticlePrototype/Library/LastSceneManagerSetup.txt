@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/ShredPrototype_SnowParticles.unity
+- path: Assets/2DSS.unity
   isLoaded: 1
   isActive: 1
