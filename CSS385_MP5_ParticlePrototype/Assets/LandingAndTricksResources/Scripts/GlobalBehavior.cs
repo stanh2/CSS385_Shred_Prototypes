@@ -58,7 +58,7 @@ public class GlobalBehavior : MonoBehaviour
         score += points;
     }
 
-    public void DestryMe()
+    public void DestroyMe()
     {
         DestroyObject(mSnowboarder);
         crashSound.Play();
