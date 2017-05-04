@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/ShredPrototype_Physics.unity
+- path: Assets/ShredPrototypeTricksAndLanding.unity
   isLoaded: 1
   isActive: 1

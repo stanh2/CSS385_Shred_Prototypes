@@ -84,9 +84,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\LandingAndTricksResources\Scripts\GlobalBehavior.cs" />
+    <Compile Include="Assets\LandingAndTricksResources\Scripts\playerBehavior.cs" />
+    <Compile Include="Assets\Menu.cs" />
+    <Compile Include="Assets\PhysicsProto\Scripts\PhysicsHero.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraBehaviour.cs" />
     <Compile Include="Assets\Resources\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Resources\Scripts\HeroScript.cs" />
+    <Compile Include="Assets\Resources\Scripts\PanelScript.cs" />
     <Compile Include="Assets\Resources\Scripts\Parallax.cs" />
     <Compile Include="Assets\Resources\Scripts\WorldBehavior.cs" />
   </ItemGroup>

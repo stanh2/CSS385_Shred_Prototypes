@@ -12,6 +12,6 @@ public class HeroScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float h = Input.GetAxis("Horizontal");
-        rb.AddForce(Vector2.right * 10f * h);
-	}
+        transform.position += h * Vector3.right * 12.5f * Time.smoothDeltaTime;
+    }
 }
