@@ -19,6 +19,7 @@ public class playerBehavior : MonoBehaviour {
     private float initRotation;
     private GameObject gm;
     private GlobalBehavior gb;
+    private raycastUp rayCastLeft, rayCastRight;
 
     // ground checker variables     
     public LayerMask groundLayer;
@@ -40,6 +41,9 @@ public class playerBehavior : MonoBehaviour {
         gm = GameObject.Find("Game Manager");
 
         gb = gm.GetComponent<GlobalBehavior>();
+
+        rayCastLeft = GameObject.Find("ray_cast_left").GetComponent<raycastUp>();
+        rayCastRight = GameObject.Find("ray_cast_right").GetComponent<raycastUp>();
 
         speedMultiplier = 1;
 
@@ -84,10 +88,11 @@ public class playerBehavior : MonoBehaviour {
             // mRB.AddTorque(Input.GetAxis("Horizontal") * -rotationSpeed);  different rotation method feels different
         }
 
-        if (isAboveRail && Input.GetAxis("Vertical") < 0)
+        if (isAboveRail)
         {
-            mRB.AddForce(transform.right * grindSpeed);
-            //mRB.position.y = ;
+            gb.UpdateScore(2);
+            if (Input.GetAxis("Vertical") < 0)
+                mRB.AddForce(transform.right * grindSpeed);
         }        
 
         // apply speed boost for x amount of seconds
@@ -120,8 +125,8 @@ public class playerBehavior : MonoBehaviour {
         #region ground trigger
         if (other.gameObject.CompareTag("GroundCollider") && jumped)
         {
-            float angle = Vector2.Angle(this.transform.right, other.transform.right);
-            //Debug.Log(angle);
+            float angle = Vector2.Angle(this.transform.right, rayCastRight.point - rayCastLeft.point);
+            Debug.Log(angle);
             if (angle <= 15f)
             {
                 int reward = 20;
@@ -178,12 +183,15 @@ public class playerBehavior : MonoBehaviour {
                 gb.DestroyMe();
             }           
         }
+
         #endregion
 
         #region rail trigger
         if (other.gameObject.CompareTag("GrindObject"))
         {
             isAboveRail = true;
+            if (Input.GetAxis("Vertical") >= 0)
+                gb.DestroyMe();
         }
         else
             isAboveRail = false;
