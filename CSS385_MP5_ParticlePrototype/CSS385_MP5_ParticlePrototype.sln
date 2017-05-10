@@ -1,13 +1,4 @@
 ﻿
-<<<<<<< HEAD
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS385_MP5_ParticlePrototype.Plugins", "CSS385_MP5_ParticlePrototype.Plugins.csproj", "{EA254AF0-672C-D0C1-8DF2-68650DBBBEFE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS385_MP5_ParticlePrototype", "CSS385_MP5_ParticlePrototype.csproj", "{C9B263FC-7E8B-6C27-EC4F-76F8BCF354B0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS385_MP5_ParticlePrototype.Editor.Plugins", "CSS385_MP5_ParticlePrototype.Editor.Plugins.csproj", "{252B3979-E8E4-9317-80E0-B8029290109F}"
-=======
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS385_MP5_ParticlePrototype", "Assembly-CSharp-firstpass.csproj", "{186126BD-717F-6275-56AC-9CDC85D6359D}"
@@ -15,7 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS385_MP5_ParticlePrototype", "Assembly-CSharp.csproj", "{E91B041D-D218-6AD4-3561-7C205B4C58A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS385_MP5_ParticlePrototype", "Assembly-CSharp-Editor-firstpass.csproj", "{938447B7-CDF2-5A01-CC2B-7EDDFDD43EAE}"
->>>>>>> f82e3ea29dbafc46983b033af981b8c7a299955a
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,20 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
-		{EA254AF0-672C-D0C1-8DF2-68650DBBBEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA254AF0-672C-D0C1-8DF2-68650DBBBEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA254AF0-672C-D0C1-8DF2-68650DBBBEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA254AF0-672C-D0C1-8DF2-68650DBBBEFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9B263FC-7E8B-6C27-EC4F-76F8BCF354B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9B263FC-7E8B-6C27-EC4F-76F8BCF354B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9B263FC-7E8B-6C27-EC4F-76F8BCF354B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9B263FC-7E8B-6C27-EC4F-76F8BCF354B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{252B3979-E8E4-9317-80E0-B8029290109F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{252B3979-E8E4-9317-80E0-B8029290109F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{252B3979-E8E4-9317-80E0-B8029290109F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{252B3979-E8E4-9317-80E0-B8029290109F}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{186126BD-717F-6275-56AC-9CDC85D6359D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{186126BD-717F-6275-56AC-9CDC85D6359D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{186126BD-717F-6275-56AC-9CDC85D6359D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,7 +25,6 @@ Global
 		{938447B7-CDF2-5A01-CC2B-7EDDFDD43EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{938447B7-CDF2-5A01-CC2B-7EDDFDD43EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{938447B7-CDF2-5A01-CC2B-7EDDFDD43EAE}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> f82e3ea29dbafc46983b033af981b8c7a299955a
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
