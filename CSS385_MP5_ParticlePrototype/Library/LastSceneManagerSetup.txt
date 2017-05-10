@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Menu.unity
+- path: D:/Documents/GitHub/CSS385_Shred_Prototypes/CSS385_MP6_Demo/CSS358_MP6_Demo/Assets/Sample_Terrain.unity
   isLoaded: 1
   isActive: 1
