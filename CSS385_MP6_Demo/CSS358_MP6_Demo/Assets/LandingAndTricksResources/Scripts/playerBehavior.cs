@@ -17,6 +17,7 @@ public class playerBehavior : MonoBehaviour {
     private bool jumped = true;
     private bool boost = false;
     private bool isAboveRail = false;
+    private bool trickComplete = false;
     private float initRotation;
     private GameObject gm;
     private GlobalBehavior gb;
@@ -49,8 +50,6 @@ public class playerBehavior : MonoBehaviour {
         speedMultiplier = 1;
 
         gb.UpdateLandingText("Landing: In Air");
-
-        gb.UpdateSpeedMulText("Speed multiplier: " + speedMultiplier.ToString());
 
         gb.UpdateTrickText("Trick: ");
     }
@@ -89,31 +88,38 @@ public class playerBehavior : MonoBehaviour {
             // mRB.AddTorque(Input.GetAxis("Horizontal") * -rotationSpeed);  different rotation method feels different
         }
 
+        /*
         if (isAboveRail)
         {
             gb.UpdateScore(2);
             if (Input.GetAxis("Vertical") < 0)
                 mRB.AddForce(transform.right * grindSpeed);
-        }        
+        }
+        */     
 
         // apply speed boost for x amount of seconds
-        if (boost)
+        if (boost && trickComplete)
         {
             speedBoostTime -= Time.deltaTime;
             if(speedBoostTime > 0)
             {
-                ApplySpeedBoost();                
+                mRB.AddForce(transform.right * 2 * speedMultiplier);
+                gb.updateTimer(2f, speedBoostTime);
             }
             else
             {
                 boost = false;
+                trickComplete = false;
                 speedMultiplier = 1;
                 speedBoostTime = 2f; // reset timer
             }
         }
 
         // update text
-        gb.UpdateSpeedMulText("Speed multiplier: " + speedMultiplier.ToString());
+        if(speedMultiplier == 1)
+            gb.UpdateSpeedMulText(" ");
+        else
+            gb.UpdateSpeedMulText("Boost X " + speedMultiplier.ToString());
 
         if (jumped)
         {
@@ -139,21 +145,21 @@ public class playerBehavior : MonoBehaviour {
         if (other.gameObject.CompareTag("GroundCollider") && jumped)
         {
             float angle = Vector2.Angle(this.transform.right, rayCastRight.point - rayCastLeft.point);
-            Debug.Log(angle);
+            //Debug.Log(angle);
             if (angle <= 15f)
             {
                 int reward = 20;
                 jumped = false;
-                speedMultiplier = 2f;
-                boost = true;
+                if (trickComplete)
+                    BoostPlayer(2f);
                 gb.UpdateLandingText("Landing: Perfect! +" + reward.ToString());
                 gb.UpdateScore(reward);
             }                
             else if (angle <= 30f)
             {
                 int reward = 15;
-                speedMultiplier = 1.8f;
-                boost = true;
+                if (trickComplete)
+                    BoostPlayer(1.8f);
                 jumped = false;
                 gb.UpdateLandingText("Landing: Great! +" + reward.ToString());
                 gb.UpdateScore(reward);
@@ -161,8 +167,8 @@ public class playerBehavior : MonoBehaviour {
             else if (angle <= 45f)
             {
                 int reward = 10;
-                speedMultiplier = 1.6f;
-                boost = true;
+                if (trickComplete)
+                    BoostPlayer(1.6f);
                 jumped = false;
                 gb.UpdateLandingText("Landing: Good! +" + reward.ToString());
                 gb.UpdateScore(reward);
@@ -171,8 +177,8 @@ public class playerBehavior : MonoBehaviour {
             else if (angle <= 60f)
             {
                 int reward = 5;
-                speedMultiplier = 1.2f;
-                boost = true;
+                if (trickComplete)
+                    BoostPlayer(1.2f);
                 jumped = false;
                 gb.UpdateLandingText("Landing: Alright +" + reward.ToString());
                 gb.UpdateScore(reward);
@@ -180,8 +186,8 @@ public class playerBehavior : MonoBehaviour {
             else if(angle <= 90f)
             {
                 int reward = 2;
-                speedMultiplier = 0.5f;
-                boost = true;
+                if (trickComplete)
+                    BoostPlayer(0.5f);
                 jumped = false;
                 gb.UpdateLandingText("Landing: Poor +" + reward.ToString());
                 gb.UpdateScore(reward);
@@ -190,7 +196,7 @@ public class playerBehavior : MonoBehaviour {
             {
                 int reward = 0;
                 speedMultiplier = 0f;
-                boost = true;
+                boost = false;
                 jumped = false;
                 gb.UpdateLandingText("Landing: CRASH! +" + reward.ToString());
                 gb.DestroyMe();
@@ -204,6 +210,7 @@ public class playerBehavior : MonoBehaviour {
         #endregion
 
         #region rail trigger
+        /*
         if (other.gameObject.CompareTag("GrindObject"))
         {
             isAboveRail = true;
@@ -212,13 +219,14 @@ public class playerBehavior : MonoBehaviour {
         }
         else
             isAboveRail = false;
+            */
         #endregion
     }
 
-    void ApplySpeedBoost()
+    void BoostPlayer(float boostMul)
     {
-        // apply speed code here
-        mRB.AddForce(transform.right * 5 * speedMultiplier);
+        speedMultiplier = boostMul;
+        boost = true;
     }
 
     void CheckForTricks()
@@ -234,7 +242,8 @@ public class playerBehavior : MonoBehaviour {
             gb.UpdateTrickText("Trick: Frontflip");
             if (isOnGround)
             {
-                gb.UpdateScore(50);
+                trickComplete = true;
+                gb.UpdateScore(reward);
                 gb.UpdateTrickText("Trick: Frontflip +" + reward.ToString());
             }                
         }
@@ -244,10 +253,10 @@ public class playerBehavior : MonoBehaviour {
             gb.UpdateTrickText("Trick: Backflip");
             if (isOnGround)
             {
-                gb.UpdateScore(50);
+                trickComplete = true;
+                gb.UpdateScore(reward);
                 gb.UpdateTrickText("Trick: Backflip +" + reward.ToString());
             }
-                
         }
         //Debug.Log(deltaAngle);
     }

@@ -17,12 +17,14 @@ public class GlobalBehavior : MonoBehaviour
     public Text speedMulText;
     public Text trickText;
     public Text scoreText;
+    public Image timerImage;
 
     // Use this for initialization
     void Start()
     {
         mSnowboarder = Instantiate(mSnowboarderClone, spawnLocation.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         crashSound = GetComponent<AudioSource>();
+        timerImage.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -56,6 +58,11 @@ public class GlobalBehavior : MonoBehaviour
     public void UpdateScore(int points)
     {
         score += points;
+    }
+
+    public void updateTimer(float initTime, float deltaTime)
+    {
+        timerImage.fillAmount = deltaTime / initTime;
     }
 
     public void DestroyMe()
