@@ -86,7 +86,10 @@ public class playerBehavior : MonoBehaviour
             }
             // checks if player's head has hit the ground
             if (Physics2D.OverlapCircle(headChecker.position, headCheckerRadius, groundLayer))
-                //LocalDestroy();
+            {
+                HeroState = State.Crash;
+            }
+            //LocalDestroy();
 
             // prevents character from move faster than the max speed;
             if (mRB.velocity.magnitude >= maxSpeed)
@@ -160,7 +163,13 @@ public class playerBehavior : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         #region ground trigger
-       
+
+        if (Physics2D.OverlapCircle(headChecker.position, headCheckerRadius, groundLayer))
+        {
+            HeroState = State.Crash;
+            return;
+        }
+            
             if (other.gameObject.CompareTag("GroundCollider") && jumped)
             {
                 float angle = Vector2.Angle(this.transform.right, rayCastRight.point - rayCastLeft.point);
@@ -232,6 +241,7 @@ public class playerBehavior : MonoBehaviour
                     gb.UpdateLandingText("Landing: CRASH! +" + reward);
                     LocalDestroy();
                     HeroState = State.Crash;
+                    return;
                 }
 
                 Vector3 targetVector = (rayCastRight.point - rayCastLeft.point).normalized;
@@ -332,7 +342,11 @@ public class playerBehavior : MonoBehaviour
         transform.position = initPos;
         mRB.velocity = new Vector2(0, 0);
         HeroState = State.Live;
-        mRB.rotation = 0f;
+        transform.rotation = Quaternion.identity;
+        speedMultiplier = 1;
+        gb.UpdateLandingText("Landing: In Air");
+        gb.UpdateTrickText("Trick: ");
+        jumped = true;
     }
     void LocalDestroy()
     {

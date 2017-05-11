@@ -84,13 +84,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraScript.cs" />
+    <Compile Include="Assets\CrashCollider.cs" />
+    <Compile Include="Assets\GlobalUIScript.cs" />
     <Compile Include="Assets\LandingAndTricksResources\Scripts\GlobalBehavior.cs" />
     <Compile Include="Assets\LandingAndTricksResources\Scripts\playerBehavior.cs" />
     <Compile Include="Assets\LandingAndTricksResources\Scripts\raycastUp.cs" />
+    <Compile Include="Assets\PanelScript.cs" />
+    <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\Polyline Editor\Examples\Example1_Path\Scripts\PathMovement.cs" />
     <Compile Include="Assets\Polyline Editor\Examples\Example2_Simple2DTerrainEditor\Libs\Triangluator.cs" />
     <Compile Include="Assets\Polyline Editor\Examples\Example2_Simple2DTerrainEditor\Scripts\Simple2DTerrain.cs" />
     <Compile Include="Assets\Polyline Editor\Scripts\Polyline.cs" />
+    <Compile Include="Assets\UIScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

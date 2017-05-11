@@ -9,6 +9,8 @@ Direct3D:
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
@@ -17,13 +19,13 @@ Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385
 Loading C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.066 seconds
+- Completed reload, in  0.387 seconds
 Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Jayse\OneDrive\CSS385\CSS385_Shred_Prototypes\CSS385_MP6_Demo\CSS358_MP6_Demo\EXE\test_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.277398 ms
+UnloadTime: 2.501951 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 15c4 -> priority: 1 
+  Thread -> id: c44 -> priority: 1 
