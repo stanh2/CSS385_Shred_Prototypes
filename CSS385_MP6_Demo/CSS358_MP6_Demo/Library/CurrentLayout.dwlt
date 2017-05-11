@@ -107,10 +107,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 683, y: 321}
-  m_MaxSize: {x: 12008, y: 8021}
+  m_MinSize: {x: 681, y: 321}
+  m_MaxSize: {x: 12006, y: 8021}
   vertical: 0
-  controlID: 46
+  controlID: 9
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -129,8 +129,8 @@ MonoBehaviour:
     y: 0
     width: 301
     height: 947
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 321}
   m_MaxSize: {x: 4004, y: 8021}
   vertical: 1
-  controlID: 47
+  controlID: 10
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -342,23 +342,23 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9c270000
-    m_LastClickedID: 10140
-    m_ExpandedIDs: 2afaffff000000006627000080270000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: e4fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Game Manager
-      m_OriginalName: Game Manager
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10066
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 6}
     m_SearchString: 
@@ -516,7 +516,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ea260000
     m_LastClickedID: 9962
-    m_ExpandedIDs: 0000000050260000862600000a2700001c2700002227000026270000f8270000fa270000fc270000fe27000000280000022800000428000006280000082800000a2800000c2800000e28000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000cc24000004250000b0250000c8250000d0250000d4250000be260000c0260000c2260000c4260000c6260000c8260000ca260000cc260000ce260000d0260000d2260000d4260000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -544,7 +544,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005026000086260000c02600000a2700001c2700001e2700002227000026270000f8270000fa270000fc270000fe27000000280000022800000428000006280000082800000a2800000c2800000e280000
+    m_ExpandedIDs: 00000000cc24000004250000b0250000c8250000d0250000d4250000be260000c0260000c2260000c4260000c6260000c8260000ca260000cc260000ce260000d0260000d2260000d4260000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
