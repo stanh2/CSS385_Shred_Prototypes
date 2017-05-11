@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerBehavior : MonoBehaviour {
+public class playerBehavior : MonoBehaviour
+{
 
     #region global variables
     // player variables
-    public const float maxSpeed = 100f;    
+    public const float maxSpeed = 100f;
     public const float jumpHeight = 1000f;
     public const float rotationSpeed = 200f;
     public const float grindSpeed = 50;
@@ -19,6 +20,7 @@ public class playerBehavior : MonoBehaviour {
     private bool isAboveRail = false;
     private bool trickComplete = false;
     private float initRotation;
+    private int tricksInARow = 1;
     private GameObject gm;
     private GlobalBehavior gb;
     private raycastUp rayCastLeft, rayCastRight;
@@ -28,7 +30,7 @@ public class playerBehavior : MonoBehaviour {
     public Transform groundChecker;
     private bool isOnGround = false;
     private Rigidbody2D mRB;
-    private float groundCheckerRadius = 0.5f;
+    private float groundCheckerRadius = 1f;
 
     // head checker variables
     public Transform headChecker;
@@ -37,7 +39,8 @@ public class playerBehavior : MonoBehaviour {
     #endregion
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         mRB = GetComponent<Rigidbody2D>();
 
         gm = GameObject.Find("Game Manager");
@@ -53,7 +56,7 @@ public class playerBehavior : MonoBehaviour {
 
         gb.UpdateTrickText("Trick: ");
     }
-	
+
     void Update()
     {
         if (isOnGround && Input.GetAxis("Jump") > 0)
@@ -62,21 +65,22 @@ public class playerBehavior : MonoBehaviour {
             isOnGround = false;
             jumped = true;
             mRB.AddForce(new Vector2(0, jumpHeight));
-            gm.GetComponent<GlobalBehavior>().UpdateLandingText("Landing: In Air");            
+            gm.GetComponent<GlobalBehavior>().UpdateLandingText("Landing: In Air");
         }
     }
 
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         // checks if the player is contacting the ground
         isOnGround = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, groundLayer);
 
         // checks if player's head has hit the ground
         if (Physics2D.OverlapCircle(headChecker.position, headCheckerRadius, groundLayer))
-            gb.DestroyMe();
+            LocalDestroy();
 
         // prevents character from move faster than the max speed;
-        if(mRB.velocity.magnitude >= maxSpeed)
+        if (mRB.velocity.magnitude >= maxSpeed)
         {
             mRB.velocity = mRB.velocity.normalized * maxSpeed;
         }
@@ -95,46 +99,35 @@ public class playerBehavior : MonoBehaviour {
             if (Input.GetAxis("Vertical") < 0)
                 mRB.AddForce(transform.right * grindSpeed);
         }
-        */     
+        */
 
         // apply speed boost for x amount of seconds
         if (boost && trickComplete)
         {
             speedBoostTime -= Time.deltaTime;
-            if(speedBoostTime > 0)
+            if (speedBoostTime > 0f)
             {
-                mRB.AddForce(transform.right * 2 * speedMultiplier);
+                mRB.AddForce(Vector3.Normalize(transform.right) * speedMultiplier);
                 gb.updateTimer(2f, speedBoostTime);
             }
             else
             {
                 boost = false;
                 trickComplete = false;
-                speedMultiplier = 1;
+                speedMultiplier = 1f;
                 speedBoostTime = 2f; // reset timer
             }
         }
 
         // update text
-        if(speedMultiplier == 1)
-            gb.UpdateSpeedMulText(" ");
+        if (speedMultiplier == 1f)
+            gb.UpdateSpeedMulText("");
         else
-            gb.UpdateSpeedMulText("Boost X " + speedMultiplier.ToString());
+            gb.UpdateSpeedMulText("Boost X " + speedMultiplier);
 
         if (jumped)
         {
-            CheckForTricks();                      
-        }
-    }
-
-    void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("GroundCollider"))
-        {
-            transform.rotation = mRB.velocity.x > 0 ? Quaternion.FromToRotation(Vector3.right,
-                (rayCastRight.point - rayCastLeft.point).normalized) :
-                Quaternion.FromToRotation(Vector3.right, -(rayCastRight.point - rayCastLeft.point).normalized);
-            mRB.AddForce(transform.right * AddedSpeed * speedMultiplier);
+            CheckForTricks();
         }
     }
 
@@ -144,66 +137,84 @@ public class playerBehavior : MonoBehaviour {
         if (other.gameObject.CompareTag("GroundCollider") && jumped)
         {
             float angle = Vector2.Angle(this.transform.right, rayCastRight.point - rayCastLeft.point);
-            //Debug.Log(angle);
+
             if (angle <= 15f)
             {
                 int reward = 20;
+
                 jumped = false;
+
                 if (trickComplete)
                     BoostPlayer(2f);
-                gb.UpdateLandingText("Landing: Perfect! +" + reward.ToString());
+
+                gb.UpdateLandingText("Landing: Perfect! +" + reward);
                 gb.UpdateScore(reward);
-            }                
+            }
             else if (angle <= 30f)
             {
                 int reward = 15;
+
                 if (trickComplete)
                     BoostPlayer(1.8f);
+
                 jumped = false;
-                gb.UpdateLandingText("Landing: Great! +" + reward.ToString());
+
+                gb.UpdateLandingText("Landing: Great! +" + reward);
                 gb.UpdateScore(reward);
-            }                
+            }
             else if (angle <= 45f)
             {
                 int reward = 10;
+
                 if (trickComplete)
                     BoostPlayer(1.6f);
+
                 jumped = false;
-                gb.UpdateLandingText("Landing: Good! +" + reward.ToString());
+
+                gb.UpdateLandingText("Landing: Good! +" + reward);
                 gb.UpdateScore(reward);
 
-            }                
+            }
             else if (angle <= 60f)
             {
                 int reward = 5;
+
                 if (trickComplete)
                     BoostPlayer(1.2f);
+
                 jumped = false;
-                gb.UpdateLandingText("Landing: Alright +" + reward.ToString());
+
+                gb.UpdateLandingText("Landing: Alright +" + reward);
                 gb.UpdateScore(reward);
-            }                
-            else if(angle <= 90f)
+            }
+            else if (angle <= 90f)
             {
                 int reward = 2;
+
                 if (trickComplete)
                     BoostPlayer(0.5f);
+
                 jumped = false;
-                gb.UpdateLandingText("Landing: Poor +" + reward.ToString());
+
+                gb.UpdateLandingText("Landing: Poor +" + reward);
                 gb.UpdateScore(reward);
-            }     
+            }
             else
             {
                 int reward = 0;
-                speedMultiplier = 0f;
-                boost = false;
-                jumped = false;
-                gb.UpdateLandingText("Landing: CRASH! +" + reward.ToString());
-                gb.DestroyMe();
+                gb.UpdateLandingText("Landing: CRASH! +" + reward);
+                LocalDestroy();
             }
-            transform.rotation = mRB.velocity.x > 0 ? Quaternion.FromToRotation(Vector3.right,
-                (rayCastRight.point - rayCastLeft.point).normalized) :
-                Quaternion.FromToRotation(Vector3.right, -(rayCastRight.point - rayCastLeft.point).normalized);
-            mRB.AddForce(transform.right * AddedSpeed * speedMultiplier);
+
+            Vector3 targetVector = (rayCastRight.point - rayCastLeft.point).normalized;
+            Quaternion toRotation = Quaternion.LookRotation(targetVector, Vector3.up);
+            float maxAngleDelta = 15f;
+
+            // rotates the player to be parallel to the ground
+            transform.rotation = mRB.velocity.x > 0 ? Quaternion.RotateTowards(transform.rotation, toRotation, maxAngleDelta)
+                : Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(-targetVector, Vector3.up), maxAngleDelta);
+
+            mRB.AddForce(Vector3.Normalize(transform.right) * AddedSpeed);
         }
 
         #endregion
@@ -214,7 +225,7 @@ public class playerBehavior : MonoBehaviour {
         {
             isAboveRail = true;
             if (Input.GetAxis("Vertical") >= 0)
-                gb.DestroyMe();
+                LocalDestroy();
         }
         else
             isAboveRail = false;
@@ -230,33 +241,62 @@ public class playerBehavior : MonoBehaviour {
 
     void CheckForTricks()
     {
+        int reward = 50;
         float trickRotation = mRB.rotation;
         float deltaAngle = 0;
+        bool oneFlipCompleted = false;
+
         deltaAngle += initRotation - trickRotation;
-       
-        // front flip detection
-        if(deltaAngle > 330f)
+
+        if (oneFlipCompleted)
         {
-            int reward = 50;
+            tricksInARow++;
+            oneFlipCompleted = false;
+        }
+
+        // front flip detection
+        if (deltaAngle > 330f)
+        {
+            oneFlipCompleted = true;
             gb.UpdateTrickText("Trick: Frontflip");
             if (isOnGround)
             {
                 trickComplete = true;
                 gb.UpdateScore(reward);
-                gb.UpdateTrickText("Trick: Frontflip +" + reward.ToString());
-            }                
+                gb.UpdateTrickText("Trick: Backflip +" + reward);
+                tricksInARow = 1;
+            }
         }
+
+        // back flip detection
         if (deltaAngle < -330f)
         {
-            int reward = 50;
+            oneFlipCompleted = true;
             gb.UpdateTrickText("Trick: Backflip");
             if (isOnGround)
             {
                 trickComplete = true;
                 gb.UpdateScore(reward);
-                gb.UpdateTrickText("Trick: Backflip +" + reward.ToString());
+                gb.UpdateTrickText("Trick: Backflip +" + reward);
+                tricksInARow = 1;
             }
         }
-        //Debug.Log(deltaAngle);
+
+        if (isOnGround && tricksInARow > 1)
+        {
+            trickComplete = true;
+            gb.UpdateScore(reward * tricksInARow);
+            gb.UpdateTrickText("Trick: Combo +" + reward + " X " + tricksInARow);
+            tricksInARow = 1;
+        }
+    }
+
+    void LocalDestroy()
+    {
+        speedMultiplier = 0f;
+        boost = false;
+        jumped = false;
+        tricksInARow = 1;
+        gb.DestroyMe();
     }
 }
