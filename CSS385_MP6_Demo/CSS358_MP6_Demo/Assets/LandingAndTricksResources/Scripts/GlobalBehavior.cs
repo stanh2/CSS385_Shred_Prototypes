@@ -47,7 +47,7 @@ public class GlobalBehavior : MonoBehaviour
 
     public void UpdateSpeedMulText(string newText)
     {
-        speedMulText.text = newText;        
+        speedMulText.text = newText;
     }
 
     public void UpdateTrickText(string newText)
@@ -69,7 +69,7 @@ public class GlobalBehavior : MonoBehaviour
     {
         DestroyObject(mSnowboarder);
         crashSound.Play();
-        speedMulText.text = "Speed multiplier: reset";
+        speedMulText.text = "";
         trickText.text = "Trick: reset";
     }
 }
