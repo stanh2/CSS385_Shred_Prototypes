@@ -86,7 +86,7 @@ public class playerBehavior : MonoBehaviour
             }
             // checks if player's head has hit the ground
             if (Physics2D.OverlapCircle(headChecker.position, headCheckerRadius, groundLayer))
-                LocalDestroy();
+                //LocalDestroy();
 
             // prevents character from move faster than the max speed;
             if (mRB.velocity.magnitude >= maxSpeed)
@@ -330,6 +330,9 @@ public class playerBehavior : MonoBehaviour
     public void Retry()
     {
         transform.position = initPos;
+        mRB.velocity = new Vector2(0, 0);
+        HeroState = State.Live;
+        mRB.rotation = 0f;
     }
     void LocalDestroy()
     {
@@ -337,6 +340,6 @@ public class playerBehavior : MonoBehaviour
         boost = false;
         jumped = false;
         tricksInARow = 1;
-        gb.DestroyMe();
+        //gb.DestroyMe();
     }
 }

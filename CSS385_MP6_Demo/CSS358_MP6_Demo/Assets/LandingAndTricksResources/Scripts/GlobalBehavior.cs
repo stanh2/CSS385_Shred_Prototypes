@@ -84,6 +84,7 @@ public class GlobalBehavior : MonoBehaviour
         UIGame.SetActive(true);
         pb.Retry();
         cs.StartCam();
+        
     }
     public void DestroyMe()
     {
