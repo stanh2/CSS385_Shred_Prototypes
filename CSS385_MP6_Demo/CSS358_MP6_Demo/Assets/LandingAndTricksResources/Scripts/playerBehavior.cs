@@ -131,10 +131,9 @@ public class playerBehavior : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("GroundCollider"))
         {
-            var angle = Vector2.Angle(this.transform.right, rayCastRight.point - rayCastLeft.point);
-            transform.rotation = mRB.velocity.x > 0
-                ? Quaternion.Euler(new Vector3(0, 0, -angle))
-                : Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = mRB.velocity.x > 0 ? Quaternion.FromToRotation(Vector3.right,
+                (rayCastRight.point - rayCastLeft.point).normalized) :
+                Quaternion.FromToRotation(Vector3.right, -(rayCastRight.point - rayCastLeft.point).normalized);
             mRB.AddForce(transform.right * AddedSpeed * speedMultiplier);
         }
     }
@@ -201,9 +200,9 @@ public class playerBehavior : MonoBehaviour {
                 gb.UpdateLandingText("Landing: CRASH! +" + reward.ToString());
                 gb.DestroyMe();
             }
-            transform.rotation = mRB.velocity.x > 0
-                ? Quaternion.Euler(new Vector3(0, 0, -angle))
-                : Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = mRB.velocity.x > 0 ? Quaternion.FromToRotation(Vector3.right,
+                (rayCastRight.point - rayCastLeft.point).normalized) :
+                Quaternion.FromToRotation(Vector3.right, -(rayCastRight.point - rayCastLeft.point).normalized);
             mRB.AddForce(transform.right * AddedSpeed * speedMultiplier);
         }
 
