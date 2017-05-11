@@ -7,12 +7,13 @@ public class playerBehavior : MonoBehaviour {
 
     #region global variables
     // player variables
-    public const float maxSpeed = 50f;    
-    public const float jumpHeight = 100f;
+    public const float maxSpeed = 100f;    
+    public const float jumpHeight = 1000f;
     public const float rotationSpeed = 200f;
     public const float grindSpeed = 50;
     public float speedBoostTime = 2f; // the duration the speed boost is applied for
     private float speedMultiplier;
+    private float AddedSpeed = 90.2f;
     private bool jumped = true;
     private bool boost = false;
     private bool isAboveRail = false;
@@ -120,7 +121,19 @@ public class playerBehavior : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("GroundCollider"))
+        {
+            var angle = Vector2.Angle(this.transform.right, rayCastRight.point - rayCastLeft.point);
+            transform.rotation = mRB.velocity.x > 0
+                ? Quaternion.Euler(new Vector3(0, 0, -angle))
+                : Quaternion.Euler(new Vector3(0, 0, angle));
+            mRB.AddForce(transform.right * AddedSpeed * speedMultiplier);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         #region ground trigger
         if (other.gameObject.CompareTag("GroundCollider") && jumped)
@@ -181,7 +194,11 @@ public class playerBehavior : MonoBehaviour {
                 jumped = false;
                 gb.UpdateLandingText("Landing: CRASH! +" + reward.ToString());
                 gb.DestroyMe();
-            }           
+            }
+            transform.rotation = mRB.velocity.x > 0
+                ? Quaternion.Euler(new Vector3(0, 0, -angle))
+                : Quaternion.Euler(new Vector3(0, 0, angle));
+            mRB.AddForce(transform.right * AddedSpeed * speedMultiplier);
         }
 
         #endregion

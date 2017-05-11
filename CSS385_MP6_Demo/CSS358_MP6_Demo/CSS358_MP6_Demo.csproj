@@ -78,6 +78,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\LandingAndTricksResources\Scripts\GlobalBehavior.cs" />
+    <Compile Include="Assets\LandingAndTricksResources\Scripts\playerBehavior.cs" />
+    <Compile Include="Assets\LandingAndTricksResources\Scripts\raycastUp.cs" />
     <Compile Include="Assets\Polyline Editor\Examples\Example1_Path\Scripts\PathMovement.cs" />
     <Compile Include="Assets\Polyline Editor\Examples\Example2_Simple2DTerrainEditor\Libs\Triangluator.cs" />
     <Compile Include="Assets\Polyline Editor\Examples\Example2_Simple2DTerrainEditor\Scripts\Simple2DTerrain.cs" />
